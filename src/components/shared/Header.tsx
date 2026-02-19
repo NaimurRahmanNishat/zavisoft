@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div className="max-w-7xl mx-auto relative">
-      <div className="absolute top-8 bg-[#FAFAFA] w-full md:h-24 h-13 flex items-center justify-between rounded-2xl md:rounded-[24px] md:p-8 p-4">
+      <div className="absolute z-50 top-8 bg-[#FAFAFA] w-full md:h-24 h-13 flex items-center justify-between rounded-2xl md:rounded-[24px] md:p-8 p-4">
         
         {/* left side */}
         <div>
