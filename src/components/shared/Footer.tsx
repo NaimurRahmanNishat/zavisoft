@@ -7,7 +7,7 @@ import { FaSquareInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="max-w-330 mx-auto pt-10">
+    <div className="max-w-330 mx-auto pt-10 relative">
       <div className="w-full md:h-232.75 h-256 flex flex-col">
         {/* top section */}
         <section className="md:w-full w-89.5 bg-[#4A69E2] h-85 md:h-136.25 md:rounded-t-[48px] rounded-t-[24px] flex flex-col md:flex-row">
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </section>
         {/* bottom section */}
-        <section className="absolute right-0  md:w-330 w-89.5 gap-10 md:left-64 left-4 -bottom-198 md:-bottom-296 bg-[#232321] h-180 md:h-147.75 md:rounded-[48px] rounded-[24px] flex flex-col md:flex-row">
+        <section className="absolute right-0  md:w-330 w-89.5 gap-10 md:left-0 left-4 -bottom-198 md:bottom-22 bg-[#232321] h-180 md:h-147.75 md:rounded-[48px] rounded-[24px] flex flex-col md:flex-row">
           {/* left side */}
           <div className="flex flex-col gap-1 md:pt-10 md:pl-10 pt-6 pl-4 w-81.5 md:w-111.5 md:h-32 h-24.5">
             <h2 className="font-rubik font-semibold md:text-[36px] text-[24px] leading-[100%] text-[#FFA52F]">About us</h2>

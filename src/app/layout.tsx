@@ -31,7 +31,7 @@ export default function RootLayout({
       >
           <main className="bg-[#E7E7E3] min-h-screen md:px-0 px-4">
           <Header />
-          <div className="max-w-7xl mx-auto md:pt-32 pt-20">
+          <div className="md:pt-32 pt-20">
             {children}
           </div>
         <Footer />
