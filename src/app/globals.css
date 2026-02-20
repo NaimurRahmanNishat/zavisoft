@@ -127,3 +127,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.desktop{
+  @apply max-w-[1320px] mx-auto;
+}
+
+.mobile{
+  @apply max-w-[358px] mx-auto;
+}
