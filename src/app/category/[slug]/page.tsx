@@ -1,6 +1,7 @@
 // src/app/category/[slug]/page.tsx
 import Image from "next/image";
 import ProductCard from "@/components/home/ProductCard";
+import { api } from "@/lib/axios";
 
 interface Category {
   id: number;
@@ -23,25 +24,8 @@ interface PageProps {
 const CategoryPage = async ({ params }: PageProps) => {
   const { slug } = await params;
 
-  // Category fetch
-  const categoryRes = await fetch(
-    `https://api.escuelajs.co/api/v1/categories/slug/${slug}`,
-    { cache: "no-store" }
-  );
-
-  if (!categoryRes.ok) {
-    throw new Error("Category not found");
-  }
-
-  const category: Category = await categoryRes.json();
-
-  // Category র products fetch
-  const productsRes = await fetch(
-    `https://api.escuelajs.co/api/v1/categories/${category.id}/products`,
-    { cache: "no-store" }
-  );
-
-  const products: Product[] = await productsRes.json();
+  const { data: category } = await api.get<Category>(`/categories/slug/${slug}`);
+  const { data: products } = await api.get<Product[]>(`/categories/${category.id}/products`);
 
   return (
     <div className="min-h-screen">
@@ -76,7 +60,7 @@ const CategoryPage = async ({ params }: PageProps) => {
       <div className="desktop px-4 md:px-0 py-10">
         {products.length === 0 ? (
           <p className="text-gray-400 text-center py-20">
-            এই category তে কোনো product নেই।
+            No products found!
           </p>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -95,7 +79,6 @@ const CategoryPage = async ({ params }: PageProps) => {
           </div>
         )}
       </div>
-
     </div>
   );
 };

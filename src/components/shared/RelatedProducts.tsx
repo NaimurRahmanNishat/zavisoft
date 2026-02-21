@@ -3,9 +3,10 @@
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import ProductCard from "../home/ProductCard";
 import { useEffect, useState } from "react";
+import { api } from "@/lib/axios";
 
 interface Props {
-  currentProductId: number;
+  currentProductId?: number;
 }
 
 interface Product {
@@ -21,13 +22,13 @@ const RelatedProduct = ({ currentProductId }: Props) => {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch(
-        "https://api.escuelajs.co/api/v1/products?offset=0&limit=9",
-        { cache: "no-store" }
-      );
-      const data = await res.json();
+      try {
+        const {data} = await api.get(`/products?offset=0&limit=9`);
       const filtered = data.filter((p: Product) => p.id !== currentProductId);
       setProducts(filtered);
+      } catch (error) {
+        console.error("Failed to load categories", error);
+      }
     };
     load();
   }, [currentProductId]);

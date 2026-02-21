@@ -2,6 +2,7 @@
 import ProductInfo from "@/components/shared/ProductInfo";
 import ProductImage from "@/components/shared/ProductImage";
 import RelatedProduct from "@/components/shared/RelatedProducts";
+import { api } from "@/lib/axios";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -15,16 +16,7 @@ const page = async ({ params }: PageProps) => {
     throw new Error("Invalid product id");
   }
 
-  const res = await fetch(
-    `https://api.escuelajs.co/api/v1/products/${id}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch product");
-  }
-
-  const product = await res.json();
+  const { data: product } = await api.get(`/products/${id}`);
 
   return (
     <div className="min-h-screen">

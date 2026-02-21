@@ -47,7 +47,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         <Link
           href={`/product/${product.id}`}
-          className="mt-auto bg-[#232321] rounded-xl flex items-center justify-center uppercase font-medium text-white font-rubik h-10 md:h-12"
+          className="mt-auto bg-[#232321] rounded-xl flex items-center text-sm md:text-[20px] justify-center uppercase font-medium text-white font-rubik h-10 md:h-12"
         >
           View Product -{" "}
           <span className="text-yellow-600">${product.price}</span>

@@ -5,6 +5,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 import { useEffect, useState } from "react";
+import { api } from "@/lib/axios";
 
 interface Category {
   id: number;
@@ -19,11 +20,12 @@ const Categories = () => {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch("https://api.escuelajs.co/api/v1/categories", {
-        cache: "no-store",
-      });
-      const data = await res.json();
-      setCategories(data);
+      try {
+        const { data } = await api.get(`/categories`);
+        setCategories(data);
+      } catch (error) {
+        console.error("Failed to load categories", error);
+      }
     };
     load();
   }, []);
