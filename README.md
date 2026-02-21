@@ -1,13 +1,15 @@
-# ZaviSoft
+### ZaviSoft
 
 <img width="1722" height="4216" alt="screencapture-localhost-3000-2026-02-22-05_24_10" src="https://github.com/user-attachments/assets/c80f25ae-6dd8-4f92-a8ec-72601cd8a240" />
 
 
-### Overview
+## performance
+
+<img width="972" height="891" alt="Screenshot 2026-02-22 051141" src="https://github.com/user-attachments/assets/d0362965-ac3d-4c99-85f8-a16afefcb3db" />
 
 
 
-## Getting Started
+## folder structure
 ```
 📦app
  ┣ 📂cart
