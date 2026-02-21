@@ -69,7 +69,7 @@ const Categories = () => {
         </div>
       </div>
 
-      <div className="bg-[#ECEEF0] rounded-tl-[48px] md:ml-72 md:mr-64 ml-4 overflow-hidden">
+      <div className="bg-[#ECEEF0] rounded-tl-[48px] md:ml-16 ml-4 overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {categories.slice(index, index + 2).map((category) => (
             <div
@@ -85,7 +85,7 @@ const Categories = () => {
               />
 
               {/* Bottom Absolute Content */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+              <div className="absolute z-10 bottom-6 left-6 right-6 flex items-end justify-between">
                 <h3 className="text-[#232321] md:text[36px] text-[24px] w-26 md:w-57.75 font-semibold uppercase leading-tight drop-shadow-lg">
                   {category.name}
                 </h3>

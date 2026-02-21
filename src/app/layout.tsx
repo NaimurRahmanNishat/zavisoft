@@ -35,7 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <main className="bg-[#E7E7E3] min-h-screen">
+          <main className="bg-[#E7E7E3] min-h-screen md:w-360 mx-auto">
             <div className="px-4 md:px-0">
               <Header />
             </div>
