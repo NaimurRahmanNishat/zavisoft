@@ -2,6 +2,21 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+📦app
+ ┣ 📂cart
+ ┃ ┗ 📜page.tsx
+ ┣ 📂category
+ ┃ ┗ 📂[slug]
+ ┃ ┃ ┗ 📜page.tsx
+ ┣ 📂product
+ ┃ ┗ 📂[id]
+ ┃ ┃ ┗ 📜page.tsx
+ ┣ 📜favicon.ico
+ ┣ 📜globals.css
+ ┣ 📜layout.tsx
+ ┣ 📜page.tsx
+ ┗ 📜ReduxProvider.tsx
+
 First, run the development server:
 
 ```bash
