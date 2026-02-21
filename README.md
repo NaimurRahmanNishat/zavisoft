@@ -10,7 +10,7 @@ Zavisoft is a fully responsive, modern e-commerce web application built with Nex
 <img width="972" height="891" alt="Screenshot 2026-02-22 051141" src="https://github.com/user-attachments/assets/d0362965-ac3d-4c99-85f8-a16afefcb3db" />
 
 ## ✨ Features
-
+```
 🏠 Home Page — Hero section, featured products, promotional banners
 🛒 Product Listing — Browse all products with category filtering
 📦 Product Detail Page — Full product info with image gallery
@@ -19,6 +19,7 @@ Zavisoft is a fully responsive, modern e-commerce web application built with Nex
 ⏳ Page Transition Loader — Smooth loading screen between route changes
 📱 Fully Responsive — Optimized for mobile, tablet, and desktop
 🔔 Promo Banner — Site-wide promotional announcement bar
+```
 
 ## folder structure
 ```
