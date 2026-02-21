@@ -40,18 +40,41 @@ Zavisoft is a fully responsive, modern e-commerce web application built with Nex
 
 ## 🛠️ Tech Stack
 
-TechnologyPurposeNext.js 16React framework with App RouterTypeScriptType-safe developmentTailwind CSSUtility-first stylingAxiosHTTP client for API requestsReact IconsIcon library (MdKeyboardArrow, etc.)VercelDeployment & hosting
+```
+Technology                     Purpose
+Next.js 16                     React framework with App Router
+TypeScript                     Type-safe development
+Tailwind CSS                   Utility-first styling
+Axios                          HTTP client for API requests
+React Icons                    Icon library (MdKeyboardArrow, etc.)
+Vercel                         Deployment & hosting
+```
 
-First, run the development server:
+## Installation
 
-```bash
+```
+# Clone the repository
+https://github.com/NaimurRahmanNishat/zavisoft.git
+
+# Navigate into the project
+cd zavisoft
+
+# Install dependencies
+npm install
+```
+
+## Development
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+
+Open http://localhost:3000 in your browser.
+
+## Build for Production
+
+```
+npm run build
+npm start
 ```
 
 ### 🌐 Deployment
