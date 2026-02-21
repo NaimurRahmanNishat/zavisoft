@@ -1,3 +1,4 @@
+// src/app/page.tsx
 import Categories from '@/components/home/Categories';
 import Hero from '@/components/home/Hero';
 import Review from '@/components/home/Review';

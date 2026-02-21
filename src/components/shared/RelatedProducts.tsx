@@ -1,61 +1,89 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from "next/image";
-import image from "../../../public/Rectangle.png";
+// components/shared/RelatedProducts.tsx
+"use client";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import ProductCard from "../home/ProductCard";
+import { useEffect, useState } from "react";
 
-const RELATED = [
-  { id: 1, name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES", price: 125 },
-  { id: 2, name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES", price: 125 },
-  { id: 3, name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES", price: 125 },
-  { id: 4, name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES", price: 125 },
-];
+interface Props {
+  currentProductId: number;
+}
 
-const RelatedProducts = () => {
+interface Product {
+  id: number;
+  title: string;
+  images: string[];
+  price: number;
+}
+
+const RelatedProduct = ({ currentProductId }: Props) => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const load = async () => {
+      const res = await fetch(
+        "https://api.escuelajs.co/api/v1/products?offset=0&limit=9",
+        { cache: "no-store" }
+      );
+      const data = await res.json();
+      const filtered = data.filter((p: Product) => p.id !== currentProductId);
+      setProducts(filtered);
+    };
+    load();
+  }, [currentProductId]);
+
+  const visibleCount = 4;
+
+  const handlePrev = () => {
+    if (index > 0) setIndex((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    if (index + visibleCount < products.length) setIndex((prev) => prev + 1);
+  };
+
+  const visible = products.slice(index, index + visibleCount);
+
   return (
-    <section className="desktop px-4 md:px-0 py-10">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-black text-gray-900" style={{ fontFamily: "Georgia, serif" }}>
+    <section className="desktop px-4 md:px-0 py-16">
+      <div className="w-full flex items-center justify-between mb-8 md:mb-12">
+        <h2 className="text-[#232321] md:text-[48px] text-[24px] font-rubik font-semibold leading-[100%]">
           You may also like
         </h2>
-        <div className="flex gap-2">
-          <button className="w-9 h-9 rounded-xl border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
-            <ChevronLeft />
+        <div className="flex md:gap-4 gap-2">
+          <button
+            onClick={handlePrev}
+            disabled={index === 0}
+            className="md:w-10 w-8 h-8 md:h-10 bg-black flex items-center justify-center rounded-sm disabled:opacity-40"
+          >
+            <MdKeyboardArrowLeft className="w-5 h-5 md:w-6 md:h-6 text-[#E7E7E3]" />
           </button>
-          <button className="w-9 h-9 rounded-xl border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
-            <ChevronRight />
+          <button
+            onClick={handleNext}
+            disabled={index + visibleCount >= products.length}
+            className="md:w-10 w-8 h-8 md:h-10 bg-black flex items-center justify-center rounded-sm disabled:opacity-40"
+          >
+            <MdKeyboardArrowRight className="w-5 h-5 md:w-6 md:h-6 text-[#E7E7E3]" />
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {RELATED.map((item) => (
-          <div key={item.id} className="bg-white rounded-2xl overflow-hidden border border-gray-100">
-            <div className="relative">
-              <span className="absolute top-2 left-2 z-10 bg-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                New
-              </span>
-              <Image src={image} alt="image" width={500} height={500} />
-            </div>
-            <div className="px-3 py-3">
-              <p className="text-[11px] font-black text-gray-900 uppercase leading-tight mb-2">{item.name}</p>
-              <button className="w-full bg-gray-900 text-white text-[11px] font-bold py-2 rounded-lg uppercase tracking-wide hover:bg-gray-700 transition">
-                View Product · <span className="text-amber-400">${item.price}</span>
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-6">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <div
-            key={i}
-            className={`h-1.5 rounded-full transition-all ${i === 0 ? "w-6 bg-blue-500" : "w-3 bg-gray-300"}`}
+        {visible.map((p) => (
+          <ProductCard
+            key={p.id}
+            product={{
+              id: p.id,
+              title: p.title,
+              images: p.images,
+              isNew: true,
+              price: p.price,
+            }}
           />
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default RelatedProducts;
+export default RelatedProduct;

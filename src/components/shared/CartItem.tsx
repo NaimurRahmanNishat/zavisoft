@@ -1,30 +1,60 @@
+// components/shared/CartItem.tsx
 "use client";
 import { HeartIcon, TrashIcon } from "lucide-react";
-import { useState } from "react";
-import image from "../../../public/Rectangle.png";
 import Image from "next/image";
+import { useCartStore } from "@/store/cartStore";
+
+const sizes = ["7", "8", "9", "10"];
+const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const CartItem = () => {
-  const sizes = ["7", "8", "9", "10"];
-  const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const { items, removeFromCart } = useCartStore();
 
-  const pricePerItem = 130;
+  if (!items.length) {
+    return <p className="text-gray-400 text-sm">Your bag is empty.</p>;
+  }
 
-  const [size, setSize] = useState("10");
-  const [qty, setQty] = useState(1);
+  return (
+    <div className="flex flex-col gap-6">
+      {items.map((item) => (
+        <CartItemCard
+          key={`${item.id}-${item.size}`}
+          item={item}
+          onRemove={() => removeFromCart(item.id, item.size)}
+        />
+      ))}
+    </div>
+  );
+};
 
-  const totalPrice = pricePerItem * qty;
+const CartItemCard = ({
+  item,
+  onRemove,
+}: {
+  item: {
+    id: number;
+    title: string;
+    images: string[];
+    price: number;
+    size: number;
+    quantity: number;
+  };
+  onRemove: () => void;
+}) => {
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+
+  const totalPrice = item.price * item.quantity;
 
   return (
     <div className="flex md:gap-6 gap-3 md:w-[733.33px] md:h-56.25 w-81.5 h-54">
-      {/* Shoe image */}
+      {/* Product Image */}
       <div>
         <Image
-          src={image}
-          alt="image"
+          src={item.images[0]}
+          alt={item.title}
           width={500}
           height={500}
-          className="md:w-52 md:h-56 w-39.25 h-54 rounded-[24px] shrink-0"
+          className="md:w-52 md:h-56 w-39.25 h-54 rounded-[24px] shrink-0 object-cover"
         />
       </div>
 
@@ -35,15 +65,10 @@ const CartItem = () => {
             {/* Title */}
             <div className="flex flex-col gap-1">
               <p className="md:text-[24px] text-[16px] font-semibold text-[#232321] uppercase">
-                DROPSET TRAINER SHOES
+                {item.title}
               </p>
-
               <p className="text-[14px] md:text-[16px] font-medium text-gray-600">
-                Men&apos;s Road Running Shoes
-              </p>
-
-              <p className="text-[14px] md:text-[16px] font-medium text-gray-600">
-                Enamel Blue / University White
+                Size: {item.size}
               </p>
             </div>
 
@@ -51,8 +76,7 @@ const CartItem = () => {
             <div className="flex items-center md:gap-4 gap-2">
               {/* Size */}
               <select
-                value={size}
-                onChange={(e) => setSize(e.target.value)}
+                defaultValue={String(item.size)}
                 className="text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 {sizes.map((s) => (
@@ -62,10 +86,11 @@ const CartItem = () => {
                 ))}
               </select>
 
-              {/* Quantity */}
               <select
-                value={qty}
-                onChange={(e) => setQty(Number(e.target.value))}
+                value={item.quantity}
+                onChange={(e) =>
+                  updateQuantity(item.id, item.size, Number(e.target.value))
+                }
                 className="text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 {quantities.map((q) => (
@@ -88,7 +113,10 @@ const CartItem = () => {
           <button className="text-gray-400 hover:text-red-500 transition">
             <HeartIcon />
           </button>
-          <button className="text-gray-400 hover:text-red-500 transition">
+          <button
+            onClick={onRemove}
+            className="text-gray-400 hover:text-red-500 transition"
+          >
             <TrashIcon />
           </button>
         </div>

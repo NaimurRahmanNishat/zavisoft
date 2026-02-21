@@ -1,5 +1,5 @@
+// src/components/shared/PromoBanner.tsx
 import Link from 'next/link';
-import React from 'react'
 
 const PromoBanner = () => {
   return (
