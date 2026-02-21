@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import React from 'react'
 import hero from '../../../public/hero.png';
 import hero1 from '../../../public/Rectangle 1.png';
 import hero2 from '../../../public/Rectangle 2.png';
 
 const Hero = () => {
   return (
-    <div>
-      <div className='max-w-330 mx-auto flex flex-col items-center gap-6'>
+    <div className='md:px-0 px-4'>
+      <div className='desktop flex flex-col items-center gap-6'>
         <h1 className="md:text-[215.5px] text-[60px] font-bold font-rubik uppercase leading-[100%]">Do it <span className='text-blue-600'>right</span></h1>
         {/* image section */}
         <div className='w-full relative h-95.5 md:h-187.5'>

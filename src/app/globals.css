@@ -126,12 +126,12 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+  .desktop{
+    @apply max-w-330 mx-auto;
+  }
 
-.desktop{
-  @apply max-w-[1320px] mx-auto;
-}
+  .mobile{
+    @apply w-89.5 mx-auto;
+  }
 
-.mobile{
-  @apply max-w-[358px] mx-auto;
 }
